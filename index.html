@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Batman</title>
+		<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<style type="text/css">
+			*{
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body{
+				background-color: black;
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			}
+
+			#app{
+				margin: 0 auto;
+				text-align: left;
+				color: #FFF;
+			}
+
+
+			.inputes {
+				margin: 0 auto;
+				width: max-content;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.inputes > label {
+				margin: 5px;
+				font-size: 1.3em;
+			}
+			.inputes > h1:first-child{
+				margin: 20px;
+			}
+			.inputes > small{
+				margin: 10px;
+				color: red;
+			}
+
+			.inputes > button {
+				width: 100px;
+				
+				margin: 0 auto;
+				margin-top: 30px;
+			}
+
+			#result {
+				text-align: center;
+				font-size: 30px;
+				margin-top: 30px;
+			}
+
+			#batmandiv {
+				margin: 0 auto;
+				width: max-content;
+			}
+
+			
+			@media only screen and (max-width: 600px) {}
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="firstInput" class="inputes"> 
+				<h1>Who do you love the most?</h1>
+				<small><strong>DO NOT</strong> choose the correct answer!</small>
+				<label for="a1">
+					<input type="radio" id="a1" >
+					1. Dito
+					
+				</label>
+				
+				<label for="a2">
+					
+					<input type="radio" id="a2" >
+					2. Batman
+				</label>
+
+				<label for="a3">
+					
+					<input type="radio" id="a3" >
+					3. 1 (first choise)
+				</label>
+
+				<label for="a4">
+					
+					<input type="radio" id="a4" >
+					4. 3 (third choise)
+				</label>
+
+				<label for="a5" style="display: none;">
+					
+					<input type="radio" id="a5" >
+					4. 3 (third choise)
+				</label>
+
+				<button class="btn btn-primary" id="firstSubmit">
+					submit
+				</button>
+			</div>
+
+
+			<div id="result">
+				
+			</div>
+
+			<div id="batmandiv" style="display: none;">
+				<button class="btn btn-primary" id="secondSubmit">
+					next
+				</button>
+			</div>
+
+		</div>
+	</body>
+
+	<script type="text/javascript">
+
+
+
+		var inputs = document.querySelectorAll('input');
+		for (var i = 0; i < inputs.length; i++){
+
+			console.log(inputs[i]);
+			inputs[i].addEventListener("click",  function(event){
+			
+			var clickedID = event.path[0].id;
+				
+			for(var j = 0; j < inputs.length; j++){
+				document.getElementById(clickedID).checked = true;
+				inputs[j].checked = false;
+			}	
+
+			}, false);			
+		}
+
+		var result = document.getElementById("result").innerText;
+
+		document.getElementById('firstSubmit').addEventListener("click", function(){
+
+			var clickedid;
+			for(var i = 0; i < document.querySelectorAll('input').length; i++){
+
+				if(document.querySelectorAll('input')[i].checked){
+					clickedid = document.querySelectorAll('input')[i].id;
+				}
+			}
+
+
+			document.getElementById('firstInput').style.display = 'none';
+
+			switch (clickedid){
+				case 'a1':
+					console.log('a1');
+					document.getElementById("result").innerText = "მიყვარხარ მაგრად <3";
+					break;
+
+				case 'a2':
+					document.getElementById("result").innerText = "Batman loves you too!";
+					document.getElementById('batmandiv').style.display = 'block';
+					break;
+
+				case 'a3':
+					document.getElementById("result").innerText = "Of course, He loves you too. And he loves your new haircut as well.";
+					break;
+
+				case 'a4':
+					document.getElementById("result").innerText = "He wants to see you!!!!!!!!!!!!!!!!!!";
+					break;
+
+				default:
+					document.getElementById("result").innerText = "choose the answer."
+					break;
+			}
+
+
+		});
+
+
+		document.getElementById('secondSubmit').addEventListener("click", function(){
+
+
+
+			document.getElementById('result').innerText = "Xito is Batman :_)";
+			document.getElementById('batmandiv').style.display = 'none';
+
+		});
+	</script>
+</html>
